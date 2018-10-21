@@ -51,7 +51,7 @@ cacheSolve <- function(x, ...) {
         return(inverse)
     }
     data <- x$get()
-    inv <- solve(data) %*% data
+    inv <- solve(data)
     x$setinverse(inv)
     inv
 }
@@ -64,8 +64,7 @@ print(c$get())
 print("Inverse matrix:")
 inv_c <- cacheSolve(c)
 print(inv_c)
-print("Matrix inverted and inverted again, so should return original matrix once again:")
-print(c$get() %*% inv_c %*% inv_c)
-print("Matrix inverted and inverted again, using cacheSolve function:")
-print(c$get() %*% cacheSolve(c) %*% cacheSolve(c))
-print(c$get() %*% cacheSolve(c) %*% cacheSolve(c))
+print("Matrix inverted should result identity")
+print(c$get() %*% inv_c)
+print("Matrix inverted, using cacheSolve function:")
+print(c$get() %*% cacheSolve(c))
